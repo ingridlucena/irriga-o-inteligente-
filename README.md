@@ -1,5 +1,63 @@
 [irrigação_inteligente.cpp](https://github.com/user-attachments/files/29403676/irrigacao_inteligente.cpp)
 
+Para a versão em Português, você já está aqui.  
+For the English version, click [here](README.en.md).
+
+---
+
+# Sistema Inteligente de Monitoramento e Irrigação Automatizada
+
+Este projeto consiste no desenvolvimento do protótipo de um sistema automatizado para controle, leitura de sensores e monitoramento de um reservatório de água e irrigação de solo. O objetivo principal é a aplicação prática de conceitos de automação, eficiência hídrica e manipulação de hardware.
+
+## Funcionamento do Sistema
+O sistema opera em malha fechada monitorando continuamente duas variáveis principais para tomar decisões de controle em tempo real:
+* **Monitoramento do Reservatório:** O sensor ultrassônico mede a distância até a lâmina d'água em centímetros. O algoritmo processa esses dados para calcular e exibir na tela TFT a capacidade volumétrica útil do reservatório (como 75% ou 100% de sua capacidade máxima).
+* **Controle de Irrigação:** O sensor de umidade do solo monitora constantemente o nível de secura da terra. Quando a umidade cai abaixo do limite crítico programado, o microcontrolador aciona o módulo relé para ligar a bomba de água. Assim que o solo atinge a umidade ideal, o sistema corta o sinal do relé, interrompendo a irrigação para evitar o desperdício de água.
+* **Dados Ambientais:** O sensor DHT faz a leitura secundária da temperatura e da umidade ativa do ar ambiente para fins de monitoramento no display.
+
+## Características do Software
+Diferente da estrutura convencional de scripts da IDE do Arduino, o software foi desenvolvido explorando a arquitetura nativa do microcontrolador em C/C++:
+* **Manipulação de Registradores:** Configuração manual e direta das portas de entrada e saída através dos registradores de direção de dados (`DDRC` e `DDRD`) e escrita de estados (`PORTD` e `PORTC`).
+* **Estrutura Clássica:** Implementação utilizando a função principal `int main(void)` e um loop infinito de controle `while(1)`, otimizando o fluxo de execução e o tempo de resposta do chip.
+
+## Hardware Utilizado
+* **Microcontrolador:** ATmega328P (Plataforma Arduino)
+* **Interface Visual:** Tela TFT 1.8" (Driver ST7735)
+* **Sensores:** Sensor de Umidade do Solo Capacitivo, Sensor Ultrassônico e Sensor de Temperatura e Umidade Ambiente (DHT)
+* **Atuador:** Módulo Relé para acionamento do sistema de bombagem
+
+## Contexto Acadêmico
+Projeto desenvolvido como atividade prática para o curso de Engenharia de Controle e Automação na UFRPE - UABJ, servindo como registro técnico e relatório de aplicação prática de conceitos de programação e circuitos eletrônicos.
+
+For the Portuguese version, click [here](README.md).  
+For the English version, you are already here.
+
+---
+
+# Intelligent Monitoring and Automated Irrigation System
+
+This project consists of developing a prototype for an automated system to control, read sensors, and monitor a water reservoir and soil irrigation. The main objective is the practical application of automation, water efficiency, and low-level hardware manipulation concepts.
+
+## System Operation
+The system operates in a closed loop, continuously monitoring two main variables to make real-time control decisions:
+* **Reservoir Monitoring:** The ultrasonic sensor measures the distance to the water level in centimeters. The algorithm processes this data to calculate and display the volumetric capacity of the reservoir (such as 75% or 100% of its maximum capacity) on the TFT screen.
+* **Irrigation Control:** The capacitive soil moisture sensor constantly monitors how dry the soil is. When the moisture drops below the programmed critical threshold, the microcontroller triggers the relay module to turn on the water pump. As soon as the soil reaches ideal moisture, the system cuts the relay signal, stopping the irrigation to prevent water waste.
+* **Environmental Data:** The DHT sensor performs secondary readings of ambient temperature and relative humidity for monitoring purposes on the display.
+
+## Software Features
+Unlike the conventional high-level scripts from the Arduino IDE, the software was developed by exploring the microcontroller's native architecture in pure C/C++:
+* **Register Manipulation:** Manual and direct configuration of input and output ports through data direction registers (`DDRC` and `DDRD`) and direct state writing (`PORTD` and `PORTC`).
+* **Classic Architecture:** Implementation using the `int main(void)` main function and a `while(1)` infinite control loop, optimizing execution flow and chip response time.
+
+## Hardware Used
+* **Microcontroller:** ATmega328P (Arduino Platform)
+* **Visual Interface:** 1.8" TFT Screen (ST7735 Driver)
+* **Sensors:** Capacitive Soil Moisture Sensor, Ultrasonic Sensor, and Ambient Temperature and Humidity Sensor (DHT)
+* **Actuator:** Relay Module to trigger the water pump system
+
+## Academic Context
+Project developed as a practical activity for the Control and Automation Engineering course at UFRPE - UABJ, serving as a technical record and practical application report of programming and electronic circuit concepts.
+
 
     #include "DHT.h"
     #include <Adafruit_GFX.h> 
